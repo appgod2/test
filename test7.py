@@ -25,7 +25,7 @@ def subGetPrice(x):
     
 #Send message to Line Notifly    
 def subLineNotify(msg):
-    token = 'S/nkoXXKr5iMI/qWSBdoT5fgch591C3VCqpLrKRFtPAvsybTNu7GTXJAqQB0elx1T95usgs4IKt/j0i9qQQ82kjkymL4owhn1T0OMcEC1VS8DVE0XW6zZ4CP741fsCx6/KYyocCgpCp6Wb24peeblgdB04t89/1O/w1cDnyilFU='
+    token = 'NVTR4vxLQ/zNiXQvTsgvW4gO7FbW6hIKrf7C/t7dKU1uAelrBfvxGzvskg9NHA9VT95usgs4IKt/j0i9qQQ82kjkymL4owhn1T0OMcEC1VRByaaf86UWChSW0NySEOnUqSOw9/1VRfuGsQSvurb8MQdB04t89/1O/w1cDnyilFU='
     headers = {
          "Authorization": "Bearer " + token, 
          "Content-Type" : "application/x-www-form-urlencoded"
