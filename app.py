@@ -14,8 +14,6 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('FlmQQSiEiaKaqoW1Pp3RWKa7I4Qbd39tUDBpod9v6vl6y0VkDelvqRKUFSXeO+IhT95usgs4IKt/j0i9qQQ82kjkymL4owhn1T0OMcEC1VSkO8Iuk4b7ApxFRjPC/QHskjulWjPaNWwah8JMj4GGNAdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('c9bbe032d7640d2adcbb5e27cb28b012')
 
-app = Flask(__name__)
-
 @app.route('/')
 def index():
     
@@ -46,7 +44,7 @@ def callback():
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text))
+        TextSendMessage(text="你好"))
 
 
 
