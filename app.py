@@ -48,9 +48,9 @@ def callback():
 def handle_message(event):
     global myId
     global getId
-    if not getId:
-       myId=event.source.user_id
-       getId=True
+    # if not getId:
+    myId=event.source.user_id
+    #    getId=True
     action = 0
     text = event.message.text
     if "1"==text:
@@ -107,8 +107,8 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=text))
     elif action==1:
-        line_bot_api.reply_message(
-            event.reply_token,
+        line_bot_api.push_message(
+            myId,
             message)
 
 
