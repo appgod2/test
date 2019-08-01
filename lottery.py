@@ -66,7 +66,8 @@ def big_lottery():
 
 	strarr.append("******************大樂透******************")
 	strarr.append("******************49樂合彩****************")
-	strarr.append(date[3],periods[3])
+	strarr.append(date[3])
+	strarr.append(periods[3])
 	# print('*******開獎順序*******',''.join(big_lottery__order))
 	strarr.append('*******大小排序*******')
 	strarr.append(''.join(big_lottery__sorted))
@@ -82,9 +83,10 @@ def colorful_539():
 
 	strarr.append("******************今彩539*****************")
 	strarr.append("******************39樂合彩****************")
-	strarr.append(date[6],periods[6])
-	strarr.append('*******開獎順序*******')
-	strarr.append(''.join(colorful_539__order))
+	strarr.append(date[6])
+	strarr.append(periods[6])
+	# strarr.append('*******開獎順序*******')
+	# strarr.append(''.join(colorful_539__order))
 	strarr.append('*******大小排序*******')
 	strarr.append(''.join(colorful_539__sorted))
 	# print("******************************************")
