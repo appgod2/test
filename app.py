@@ -21,9 +21,9 @@ def index():
     
     return 'Hello World!'
 
-@app.route('/<name>')
-def hello(name):
-    return 'Hello ' + name + '!'
+# @app.route('/<name>')
+# def hello(name):
+#     return 'Hello ' + name + '!'
 
 @app.route("/callback", methods=['POST'])
 def callback():
