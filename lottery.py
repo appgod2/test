@@ -38,14 +38,14 @@ def wei_li():
 			elif 6 < counter <= 12:
 				wei_li__sorted.append(match.group(1))
 	strarr = []
-	strarr.append("******************威力彩******************")
-	strarr.append("******************38樂合彩****************")
+	strarr.append("*威力彩")
+	# strarr.append("******************38樂合彩****************")
 	strarr.append(date[1])
 	strarr.append(periods[1])
 	# strarr.append('*******開獎順序*******',''.join(wei_li__order))
-	strarr.append('*******大小排序*******')
+	# strarr.append('*******大小排序*******')
 	strarr.append(''.join(wei_li__sorted))
-	strarr.append('*******第二區號*******')
+	strarr.append('第二區號')
 	strarr.append(int(special_ball[1]))
 
 	return '\n'.join(str(x) for x in strarr)
@@ -64,14 +64,14 @@ def big_lottery():
 				big_lottery__sorted.append(match.group(1))
 	strarr = []
 
-	strarr.append("******************大樂透******************")
-	strarr.append("******************49樂合彩****************")
+	strarr.append("大樂透")
+	# strarr.append("******************49樂合彩****************")
 	strarr.append(date[3])
 	strarr.append(periods[3])
 	# print('*******開獎順序*******',''.join(big_lottery__order))
-	strarr.append('*******大小排序*******')
+	# strarr.append('*******大小排序*******')
 	strarr.append(''.join(big_lottery__sorted))
-	strarr.append('*******特別號碼*******')
+	strarr.append('特別號碼')
 	strarr.append(int(special_ball[2]))
 	# print("******************************************")
 	return '\n'.join(str(x) for x in strarr)
@@ -81,13 +81,13 @@ def colorful_539():
 	colorful_539__sorted = lemon_ball[5:10]
 	strarr = []
 
-	strarr.append("******************今彩539*****************")
-	strarr.append("******************39樂合彩****************")
+	strarr.append("今彩539")
+	# strarr.append("******************39樂合彩****************")
 	strarr.append(date[6])
 	strarr.append(periods[6])
 	# strarr.append('*******開獎順序*******')
 	# strarr.append(''.join(colorful_539__order))
-	strarr.append('*******大小排序*******')
+	# strarr.append('*******大小排序*******')
 	strarr.append(''.join(colorful_539__sorted))
 	# print("******************************************")
 	return '\n'.join(str(x) for x in strarr)
@@ -105,4 +105,4 @@ def colorful_539():
 # print("******************************************")
 # print(wei_li())
 # big_lottery())
-# colorful_539()
+# print(colorful_539())
