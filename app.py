@@ -47,6 +47,10 @@ def handle_message(event):
         TextSendMessage(text="你好"))
 
 
+def push_message():
+    line_bot_api.push_message(
+        '1597304782',
+        TextSendMessage(text="我是機器人"))
 
 if __name__=="__main__":
     app.run()
