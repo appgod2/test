@@ -16,7 +16,7 @@ handler = WebhookHandler('c9bbe032d7640d2adcbb5e27cb28b012')
 
 @app.route('/')
 def index():
-    
+    push_message()
     return 'Hello World!'
 
 # @app.route('/<name>')
