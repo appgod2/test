@@ -50,9 +50,15 @@ def handle_message(event):
        myId=event.source.user_id
        getId=True
     
+    text = event.message.text
+    if "1"==text:
+        text = "彭千玉"
+    elif "2"==text    
+        text = "廖韋佑"
+
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text))
+        TextSendMessage(text=))
 
 
 @app.route('/sendmsg')
