@@ -107,9 +107,9 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=text))
     elif action==1:
-        line_bot_api.reply_message(
-            event.reply_token,
-            Message(text=text))
+        line_bot_api.push_message(
+            myId,
+            text)
 
 
 @app.route('/sendmsg')
