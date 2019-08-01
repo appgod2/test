@@ -51,7 +51,7 @@ def handle_message(event):
     if not getId:
        myId=event.source.user_id
        getId=True
-    
+    action = 0
     text = event.message.text
     if "1"==text:
         text = "我是彭千玉"
@@ -67,12 +67,48 @@ def handle_message(event):
         text = lottery.big_lottery()
     elif "539開獎"==text:
         text = lottery.colorful_539()
+    elif "選單"==text:
+        message = {
+                    "type": "template",
+                    "altText": "在不支援顯示樣板的地方顯示的文字",
+                    "template": {
+                        "type": "buttons",
+                        "text": "標題文字",
+                        "actions": [
+                        {
+                            "type": "message",
+                            "label": "第一個按鈕",
+                            "text": "1"
+                        },
+                        {
+                            "type": "message",
+                            "label": "第二個按鈕",
+                            "text": "2"
+                        },
+                        {
+                            "type": "message",
+                            "label": "第三個按鈕",
+                            "text": "3"
+                        },
+                        {
+                            "type": "message",
+                            "label": "第四個按鈕",
+                            "text": "4"
+                        }
+                        ]
+                    }
+                }
     else:
         return
 
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=text))
+    if action==0:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=text))
+    elif action==1:
+        line_bot_api.reply_message(
+            event.reply_token,
+            message)
 
 
 @app.route('/sendmsg')
