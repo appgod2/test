@@ -69,7 +69,7 @@ def handle_message(event):
         text = lottery.colorful_539()
     elif "選單"==text:
         action = 1
-        message = {
+        text = {
                     "type": "template",
                     "altText": "在不支援顯示樣板的地方顯示的文字",
                     "template": {
@@ -107,9 +107,9 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=text))
     elif action==1:
-        line_bot_api.push_message(
-            myId,
-            message)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=text))
 
 
 @app.route('/sendmsg')
