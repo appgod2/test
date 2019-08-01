@@ -18,7 +18,7 @@ getId=False
 
 @app.route('/')
 def index():
-    
+
     return 'Hello World!'
 
 # @app.route('/<name>')
@@ -57,11 +57,11 @@ def handle_message(event):
 
 @app.route('/sendmsg')
 def push_message():
-    try:
-        line_bot_api.push_message(
-            myId,
-            TextSendMessage(text="我是機器人"))
-    except Exception:
+    line_bot_api.push_message(
+        myId,
+        TextSendMessage(text="我是機器人"))
+
 
 if __name__=="__main__":
     app.run()
+
