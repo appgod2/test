@@ -57,8 +57,8 @@ def handle_message(event):
     elif "2"==text:
         text = "廖韋佑"
     elif "威力彩"==text:
-        num = ''.join(random.sample(range(1,49),6))
-        num2 = ''.join(random.sample(range(1,8),1))
+        num = " ".join(str(x) for x in random.sample(range(1,49),6))
+        num2 = " ".join(str(x) for x in random.sample(range(1,8),1))
         text = num + " 特別號:" + num2
     else:
         return
