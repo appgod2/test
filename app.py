@@ -56,7 +56,7 @@ def handle_message(event):
         text = "我是彭千玉"
     elif "2"==text:
         text = "廖韋佑"
-    elif "威力彩"==text
+    elif "威力彩"==text:
         num = random.sample(range(1,49),6)
         num2 = random.sample(range(1,8),1)
         text = num + " 特別號:" + num2
