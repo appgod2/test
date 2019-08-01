@@ -62,25 +62,29 @@ def big_lottery():
 				big_lottery__order.append(match.group(1))
 			elif 27 <= counter <= 32:
 				big_lottery__sorted.append(match.group(1))
+	strarr = []
 
-	print("******************大樂透******************")
-	print("******************49樂合彩****************")
-	print(date[3],periods[3])
-	print('*******開獎順序*******',''.join(big_lottery__order))
-	print('*******大小排序*******',''.join(big_lottery__sorted))
-	print('*******特別號碼*******',int(special_ball[2]))
-	print("******************************************")
+	strarr.append("******************大樂透******************")
+	strarr.append("******************49樂合彩****************")
+	strarr.append(date[3],periods[3])
+	# print('*******開獎順序*******',''.join(big_lottery__order))
+	strarr.append('*******大小排序*******',''.join(big_lottery__sorted))
+	strarr.append('*******特別號碼*******',int(special_ball[2]))
+	# print("******************************************")
+	return '\n'.join(str(x) for x in strarr)
 
 def colorful_539():
 	colorful_539__order  = lemon_ball[0:5]
 	colorful_539__sorted = lemon_ball[5:10]
+	strarr = []
 
-	print("******************今彩539*****************")
-	print("******************39樂合彩****************")
-	print(date[6],periods[6])
-	print('*******開獎順序*******',''.join(colorful_539__order))
-	print('*******大小排序*******',''.join(colorful_539__sorted))
-	print("******************************************")
+	strarr.append("******************今彩539*****************")
+	strarr.append("******************39樂合彩****************")
+	strarr.append(date[6],periods[6])
+	strarr.append('*******開獎順序*******',''.join(colorful_539__order))
+	strarr.append('*******大小排序*******',''.join(colorful_539__sorted))
+	# print("******************************************")
+	return '\n'.join(str(x) for x in strarr)
 
 # def happy_39():
 # 	happy_39__order  = lemon_ball[10:15]

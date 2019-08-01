@@ -61,8 +61,12 @@ def handle_message(event):
         num = " ".join(str(x) for x in random.sample(range(1,38),6))
         num2 = " ".join(str(x) for x in random.sample(range(1,8),1))
         text = num + " 特別號:" + num2
-    elif "開獎號碼"==text:
+    elif "威力彩開獎"==text:
         text = lottery.wei_li()
+    elif "大樂透開獎"==text:
+        text = lottery.big_lottery()
+    elif "539開獎"==text:
+        text = lottery.colorful_539()
     else:
         return
 
