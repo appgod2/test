@@ -68,6 +68,7 @@ def handle_message(event):
     elif "539開獎"==text:
         text = lottery.colorful_539()
     elif "選單"==text:
+        action = 1
         message = {
                     "type": "template",
                     "altText": "在不支援顯示樣板的地方顯示的文字",
