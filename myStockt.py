@@ -119,4 +119,4 @@ def test2():
         # 今年底的資產，變成明年初的資產
         start_capital = total_equality[-1]
 
-test00()
+# test00()
