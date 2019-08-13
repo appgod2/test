@@ -8,7 +8,8 @@ def run():
 	# stock_info = ts.get_stock_basics()
 	#連接數據庫
 	# conn = MySQLdb.connect(host='127.0.0.1',user='root',password='acha',database='test2')
-	conn = MySQLdb.connect(host='us-cdbr-iron-east-02.cleardb.net',user='b23603b8be443b',password='10116eed',database='heroku_55f5167c61c71c0')
+	# conn = MySQLdb.connect(host='us-cdbr-iron-east-02.cleardb.net',user='b23603b8be443b',password='10116eed',database='heroku_55f5167c61c71c0')
+	conn = MySQLdb.connect(host='db4free.net',user='appgod',password='10021002',database='appgod_test')
 	conn.set_character_set('utf8')
 	cursor = conn.cursor()
 
