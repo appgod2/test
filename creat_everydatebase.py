@@ -46,34 +46,37 @@ def everdate2(starttime,endtime,line_bot_api,event):
         # stock_6207_2018_pd = pd.DataFrame(stock)
         #這裏使用try，except的目的是爲了防止一些停牌的股票，獲取數據爲空，插入數據庫的時候失敗而報錯
         #再使用for循環遍歷單隻股票每一天的行情
-        try:
-            time.sleep(3)
-            stock = twstock.Stock(code)
-            stock.fetch_from(2019, 7)  # 獲取 2000 年 10 月至今日之股票資料
-            print(i[0])
-            for _data in stock.data:
-                #獲取股票日期，並轉格式（這裏爲什麼要轉格式，是因爲之前我2018-03-15這樣的格式寫入數據庫的時候，通過通配符%之後他居然給我把-符號當做減號給算出來了查看數據庫日期就是2000百思不得其解想了很久最後決定轉換格式）
-                date = _data.date.strftime("%Y%m%d")
-                _open = _data.open
-                close = _data.close
-                high = _data.high
-                low = _data.low
-                capacity = _data.capacity
-                change = _data.change
-                cursor.execute("select * from " + table_name +  " where date='"+ date +"'")
-                tmp = cursor.fetchall()
-                if len(tmp) == 0:
+        # try:
+        time.sleep(3)
+        stock = twstock.Stock(code)
+        stock.fetch_from(2019, 7)  # 獲取 2000 年 10 月至今日之股票資料
+        print(i[0])
+        for _data in stock.data:
+            #獲取股票日期，並轉格式（這裏爲什麼要轉格式，是因爲之前我2018-03-15這樣的格式寫入數據庫的時候，通過通配符%之後他居然給我把-符號當做減號給算出來了查看數據庫日期就是2000百思不得其解想了很久最後決定轉換格式）
+            date = _data.date.strftime("%Y%m%d")
+            _open = _data.open
+            close = _data.close
+            high = _data.high
+            low = _data.low
+            capacity = _data.capacity
+            change = _data.change
+            cursor.execute("select date from " + table_name)
+            tmp = [cursor.fetchall()]
+            tmp_list = re.findall('(\'.*?\')',str(tmp))
+            tmp_list = [re.sub("'",'',each) for each in tmp_list]
+            if date in tmp_list:
+                text = '%s %s這股票有資料'%(code,date)
+                print('%s %s這股票有資料'%(code,date))
+            else:
+                if date != None and _open != None and close != None and high != None and low != None and capacity != None and change != None :
                     #插入每一天的行情
-                    text = '%s插入每一天的行情'%(code)
-                    print('%s插入每一天的行情'%(code))
+                    text = '%s插入%s的行情'%(code,date)
+                    print('insert into '+table_name+ ' (date,open,close,high,low,capacity,p_change) values (%s,%s,%s,%s,%s,%s,%s)' % (date,_open,close,high,low,capacity,change))
                     cursor.execute('insert into '+table_name+ ' (date,open,close,high,low,capacity,p_change) values (%s,%s,%s,%s,%s,%s,%s)' % (date,_open,close,high,low,capacity,change))
-                else:
-                    text = '%s %s這股票有資料'%(code,date)
-                    print('%s %s這股票有資料'%(code,date))
-                
-        except:
-            text = '%s這股票目前停牌'%(code)
-            print('%s這股票目前停牌'%(code))
+    
+    # except:
+        # text = '%s這股票目前停牌'%(code)
+        # print('%s這股票目前停牌'%(code))
 
     cursor.close()
     conn.close()
