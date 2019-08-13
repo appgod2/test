@@ -22,9 +22,10 @@ def run():
 		market = codeinfo.market
 		_type = codeinfo.type
 		group = codeinfo.group
-		print('insert into allstock_tw (code,name,market,_type,_group) values (%s,%s,%s,%s,%s)',(code,name,market,_type,group))
-		cursor.execute('insert into allstock_tw (code,name,market,_type,_group) values (%s,%s,%s,%s,%s)',(code,name,market,_type,group))
-		a += 1
+		if _type == '股票':
+			print('insert into allstock_tw (code,name,market,_type,_group) values (%s,%s,%s,%s,%s)',(code,name,market,_type,group))
+			cursor.execute('insert into allstock_tw (code,name,market,_type,_group) values (%s,%s,%s,%s,%s)',(code,name,market,_type,group))
+			a += 1
 
 	print('共獲取到%d支股票'%a)
 
@@ -32,4 +33,4 @@ def run():
 	cursor.close()
 	conn.close()
 
-# run()
+run()

@@ -3,6 +3,7 @@ import lottery
 import myStockt
 import write_allstock_tw
 import creat_everydatebase
+import threading
 from flask import Flask, request, abort
 from linebot import (
     LineBotApi, WebhookHandler
@@ -60,7 +61,9 @@ def handle_message(event):
         text = "我是彭千玉"
     elif "creat_everydatebase_Run"==text:
         action = 2
-        creat_everydatebase.everdate2('','',line_bot_api,event)
+        t = threading.Thread(target = creat_everydatebase.everdate2, args = ('','',line_bot_api,event))
+        # 執行該執行緒
+        t.start()
     elif "2"==text:
         text = "廖韋佑"
     elif "威力彩"==text:
