@@ -73,6 +73,7 @@ def everdate2(starttime,endtime,line_bot_api,event):
                     text = '%s插入%s的行情'%(code,date)
                     print('insert into '+table_name+ ' (date,open,close,high,low,capacity,p_change) values (%s,%s,%s,%s,%s,%s,%s)' % (date,_open,close,high,low,capacity,change))
                     cursor.execute('insert into '+table_name+ ' (date,open,close,high,low,capacity,p_change) values (%s,%s,%s,%s,%s,%s,%s)' % (date,_open,close,high,low,capacity,change))
+                    conn.commit()
     
     # except:
         # text = '%s這股票目前停牌'%(code)
