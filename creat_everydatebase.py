@@ -5,13 +5,20 @@ import pandas as pd
 from linebot import (
     LineBotApi, WebhookHandler
 )
+from linebot.exceptions import (
+    InvalidSignatureError
+)
+from linebot.models import (
+    MessageEvent, TextMessage, TextSendMessage,
+)
 
 def everdate(starttime,endtime):
-    everdate(starttime,endtime,'')
+    everdate(starttime,endtime,'','')
 
 #創建所有股票的表格以及插入每支股票的近段時間的行情，這個文件只需要執行一次！！！
 #想要寫入哪一段時間的數據只需要修改starttime,endtime的時間就可以了
-def everdate(starttime,endtime,event):
+def everdate(starttime,endtime,line_bot_api,event):
+    text =""
     #連接數據庫
     # conn = MySQLdb.connect(host='127.0.0.1',user='root',password='acha',database='test2')
     # conn = MySQLdb.connect(host='us-cdbr-iron-east-02.cleardb.net',user='b23603b8be443b',password='10116eed',database='heroku_55f5167c61c71c0')
@@ -57,7 +64,7 @@ def everdate(starttime,endtime,event):
                 tmp = cursor.fetchall()
                 if len(tmp) == 0:
                     #插入每一天的行情
-                    text = '%s插入每一天的行情'%(code))
+                    text = '%s插入每一天的行情'%(code)
                     print('%s插入每一天的行情'%(code))
                     cursor.execute('insert into '+table_name+ ' (date,open,close,high,low,capacity,p_change) values (%s,%s,%s,%s,%s,%s,%s)' % (date,_open,close,high,low,capacity,change))
                 else:
