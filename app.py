@@ -58,6 +58,8 @@ def handle_message(event):
     text = event.message.text
     if "1"==text:
         text = "我是彭千玉"
+    elif "creat_everydatebase_Run"==text:
+        creat_everydatebase.everdate('','',event)
     elif "2"==text:
         text = "廖韋佑"
     elif "威力彩"==text:
