@@ -1,5 +1,6 @@
 import random
 import lottery
+import myStockt
 from flask import Flask, request, abort
 from linebot import (
     LineBotApi, WebhookHandler
@@ -117,6 +118,37 @@ def push_message():
     line_bot_api.push_message(
         myId,
         TextSendMessage(text="我是機器人"))
+
+@app.route('/stock')
+def test():
+    # import matplotlib
+    # matplotlib.use('Agg')  # 不出現畫圖的框
+    # import matplotlib.pyplot as plt
+    # from io import BytesIO
+    # import base64
+
+    # plt.axis([0, 5, 0, 20])  # [xmin,xmax,ymin,ymax]對應軸的範圍
+    # plt.title('My first plot')  # 圖名
+    # plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')  # 圖上的點,最後一個引數為顯示的模式
+    # sio = BytesIO()
+    # plt.savefig(sio, format='png')
+    # data = base64.encodebytes(sio.getvalue()).decode()
+    data = myStockt.test()
+    print(data)
+    html = '''
+       <html>
+           <body>
+               <img src="data:image/png;base64,{}" />
+           </body>
+        <html>
+    '''
+    return html.format(data)
+
+    # headers = {
+    # 'Content-Type': 'image/png',
+    # 'Content-Length': len(data)
+    # }
+    # return HTTPResponse(body=data, headers=headers,)
 
 
 if __name__=="__main__":
