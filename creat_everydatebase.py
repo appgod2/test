@@ -13,11 +13,11 @@ from linebot.models import (
 )
 
 def everdate(starttime,endtime):
-    everdate(starttime,endtime,'','')
+    everdate2(starttime,endtime,'','')
 
 #創建所有股票的表格以及插入每支股票的近段時間的行情，這個文件只需要執行一次！！！
 #想要寫入哪一段時間的數據只需要修改starttime,endtime的時間就可以了
-def everdate(starttime,endtime,line_bot_api,event):
+def everdate2(starttime,endtime,line_bot_api,event):
     text =""
     #連接數據庫
     # conn = MySQLdb.connect(host='127.0.0.1',user='root',password='acha',database='test2')

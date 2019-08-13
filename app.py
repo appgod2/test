@@ -59,7 +59,8 @@ def handle_message(event):
     if "1"==text:
         text = "我是彭千玉"
     elif "creat_everydatebase_Run"==text:
-        creat_everydatebase.everdate('','',line_bot_api,event)
+        action = 2
+        creat_everydatebase.everdate2('','',line_bot_api,event)
     elif "2"==text:
         text = "廖韋佑"
     elif "威力彩"==text:
