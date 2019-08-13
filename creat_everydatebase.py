@@ -47,7 +47,7 @@ def everdate2(starttime,endtime,line_bot_api,event):
         #這裏使用try，except的目的是爲了防止一些停牌的股票，獲取數據爲空，插入數據庫的時候失敗而報錯
         #再使用for循環遍歷單隻股票每一天的行情
         # try:
-        time.sleep(3)
+        time.sleep(10)
         stock = twstock.Stock(code)
         stock.fetch_from(2019, 7)  # 獲取 2000 年 10 月至今日之股票資料
         print(i[0])
