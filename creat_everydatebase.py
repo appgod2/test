@@ -74,12 +74,12 @@ def everdate2(starttime,endtime,line_bot_api,event):
         except:
             text = '%s這股票目前停牌'%(code)
             print('%s這股票目前停牌'%(code))
-        if event != '':
-            line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=text))
 
     cursor.close()
     conn.close()
+    if event != '':
+        line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text="完成"))
 
 # everdate('','')
