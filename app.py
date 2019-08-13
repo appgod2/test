@@ -1,6 +1,8 @@
 import random
 import lottery
 import myStockt
+import write_allstock_tw
+import creat_everydatebase
 from flask import Flask, request, abort
 from linebot import (
     LineBotApi, WebhookHandler
@@ -118,6 +120,14 @@ def push_message():
     line_bot_api.push_message(
         myId,
         TextSendMessage(text="我是機器人"))
+
+@app.route('/write_allstock_tw')
+def write_allstock_tw_Run():
+    write_allstock_tw.run()
+
+@app.route('/creat_everydatebase')
+def creat_everydatebase_Run():
+    creat_everydatebase.everdate('','')
 
 @app.route('/stock')
 def test():
