@@ -136,11 +136,11 @@ def write_allstock_tw_Run():
 @app.route('/creat_everydatebase')
 def creat_everydatebase_Run():
     # y = 2018
-    for y in range(2000,2019):
+    for y in range(2019,2019):
         mm = 12
         if y == 2019:
             mm = 7
-            
+
         for m in range(1,mm):
             t = threading.Thread(target = creat_everydatebase.everdate2, args = (y,m,'',''))
             # 執行該執行緒
