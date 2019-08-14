@@ -136,7 +136,7 @@ def write_allstock_tw_Run():
 @app.route('/creat_everydatebase')
 def creat_everydatebase_Run():
     # y = 2018
-    for y in range(2019,2019):
+    for y in range(2019,2020):
         mm = 12
         if y == 2019:
             mm = 7
