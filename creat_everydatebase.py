@@ -87,4 +87,4 @@ def everdate2(year,month,line_bot_api,event):
         event.reply_token,
         TextSendMessage(text="完成"))
 
-everdate(2019,8)
+# everdate(2019,8)
