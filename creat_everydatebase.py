@@ -17,7 +17,7 @@ def everdate(starttime,endtime):
 
 #創建所有股票的表格以及插入每支股票的近段時間的行情，這個文件只需要執行一次！！！
 #想要寫入哪一段時間的數據只需要修改starttime,endtime的時間就可以了
-def everdate2(starttime,endtime,line_bot_api,event):
+def everdate2(year,month,line_bot_api,event):
     text =""
     #連接數據庫
     # conn = MySQLdb.connect(host='127.0.0.1',user='root',password='acha',database='test2')
@@ -49,7 +49,7 @@ def everdate2(starttime,endtime,line_bot_api,event):
         # try:
         time.sleep(10)
         stock = twstock.Stock(code)
-        stock.fetch_from(2019, 7)  # 獲取 2000 年 10 月至今日之股票資料
+        stock.fetch(year, month)  # 獲取 2000 年 10 月至今日之股票資料
         print(i[0])
         for _data in stock.data:
             #獲取股票日期，並轉格式（這裏爲什麼要轉格式，是因爲之前我2018-03-15這樣的格式寫入數據庫的時候，通過通配符%之後他居然給我把-符號當做減號給算出來了查看數據庫日期就是2000百思不得其解想了很久最後決定轉換格式）

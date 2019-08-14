@@ -61,9 +61,11 @@ def handle_message(event):
         text = "我是彭千玉"
     elif "creat_everydatebase_Run"==text:
         action = 2
-        t = threading.Thread(target = creat_everydatebase.everdate2, args = ('','',line_bot_api,event))
-        # 執行該執行緒
-        t.start()
+        y = 2018
+        for m in range(1,12):
+            t = threading.Thread(target = creat_everydatebase.everdate2, args = (y,m,line_bot_api,event))
+            # 執行該執行緒
+            t.start()
     elif "2"==text:
         text = "廖韋佑"
     elif "威力彩"==text:
