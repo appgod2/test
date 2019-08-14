@@ -34,4 +34,4 @@ def run():
 	cursor.close()
 	conn.close()
 
-run()
+# run()
