@@ -9,7 +9,8 @@ def run():
 	#連接數據庫
 	# conn = MySQLdb.connect(host='127.0.0.1',user='root',password='acha',database='test2')
 	# conn = MySQLdb.connect(host='us-cdbr-iron-east-02.cleardb.net',user='b23603b8be443b',password='10116eed',database='heroku_55f5167c61c71c0')
-	conn = MySQLdb.connect(host='db4free.net',user='appgod',password='10021002',database='appgod_test')
+	# conn = MySQLdb.connect(host='db4free.net',user='appgod',password='10021002',database='appgod_test')
+	conn = MySQLdb.connect(host='118.150.153.139',port=32810,user='root',password='acha',database='twstock')
 	conn.set_character_set('utf8')
 	cursor = conn.cursor()
 
@@ -33,4 +34,4 @@ def run():
 	cursor.close()
 	conn.close()
 
-# run()
+run()
