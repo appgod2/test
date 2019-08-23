@@ -1,6 +1,7 @@
 import random
 import lottery
 import myStockt
+import stock2
 import write_allstock_tw
 import creat_everydatebase
 import threading
@@ -176,7 +177,9 @@ def test():
     # 'Content-Length': len(data)
     # }
     # return HTTPResponse(body=data, headers=headers,)
-
+@app.route('/sid_list')
+def sid_list():
+    return stock2.getSid_list(30)
 
 if __name__=="__main__":
     app.run()

@@ -19,18 +19,18 @@ def test0():
 
         print('parsing', date)
         # 使用 crawPrice 爬資料
-        try:
+        # try:
             # 抓資料
-            data[date.date()] = crawl_price(date)
-            print('success!')
-            fail_count = 0
-        except:
-            # 假日爬不到
-            print('fail! check the date is holiday')
-            fail_count += 1
-            if fail_count == allow_continuous_fail_count:
-                raise
-                break
+        data[date.date()] = crawl_price(date)
+        print('success!')
+        fail_count = 0
+        # except:
+        #     # 假日爬不到
+        #     print('fail! check the date is holiday')
+        #     fail_count += 1
+        #     if fail_count == allow_continuous_fail_count:
+        #         raise
+        #         break
         
         # 減一天
         date -= datetime.timedelta(days=1)
@@ -119,4 +119,4 @@ def test2():
         # 今年底的資產，變成明年初的資產
         start_capital = total_equality[-1]
 
-# test00()
+test00()
