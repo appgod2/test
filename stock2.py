@@ -2,8 +2,8 @@ import requests
 from io import StringIO
 import pandas as pd
 import numpy as np
-import talib as ta
-import StockPredictor
+# import talib as ta
+# import StockPredictor
 
 
 def addMysql(data_list):
