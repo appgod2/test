@@ -488,7 +488,7 @@ def getStockall_testRunLog():
     conn = MySQLdb.connect(host='118.150.153.139',port=32773,user='root',password='acha',database='twstock')
     conn.set_character_set('utf8')
 
-    df = pd.read_sql("select * from stockall_testRunLog where id = max(id) ORDER BY DATE ASC", con=conn)
+    df = pd.read_sql("select * from stockall_testRunLog WHERE id = (SELECT max(DISTINCT id) from stockall_testRunLog) ORDER BY DATE ASC", con=conn)
     df.head()
     for item in df.items():
         print(item)
