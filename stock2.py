@@ -492,7 +492,7 @@ def getStockall_testRunLog():
     for item in df.items():
         print(item)
 
-runTEST()
+# runTEST()
 # getData_mysql()
 # runAddToDay2mysql()
 # getSid_list(2)
