@@ -489,8 +489,10 @@ def getStockall_testRunLog():
     conn.set_character_set('utf8')
 
     df = pd.read_sql("select * from stockall_testRunLog where id = max(id) ORDER BY DATE ASC", con=conn)
+    df.head()
     for item in df.items():
         print(item)
+    return df
 
 # runTEST()
 # getData_mysql()
