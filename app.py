@@ -181,6 +181,10 @@ def test():
 def sid_list():
     return stock2.getSid_list(30)
 
+@app.route('/getStockall_testRunLog')
+def getStockall_testRunLog():
+    return stock2.getStockall_testRunLog()
+
 if __name__=="__main__":
     app.run()
 
