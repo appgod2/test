@@ -175,12 +175,12 @@ def run(code,stockdata,year, month):
 # everdate('','')
 
 # y = 2019
-for y in range(2018,2020):
-    print(y)
-    mm = 12
-    #if y == 2019:
-    #    mm = 7
+# for y in range(2018,2020):
+#     print(y)
+#     mm = 12
+#     #if y == 2019:
+#     #    mm = 7
     
-    for m in range(1,mm):
-        print(m)
-        everdate2(y,m,'','')
+#     for m in range(1,mm):
+#         print(m)
+#         everdate2(y,m,'','')
