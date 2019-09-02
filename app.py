@@ -79,6 +79,8 @@ def handle_message(event):
         text = lottery.big_lottery()
     elif "539開獎"==text:
         text = lottery.colorful_539()
+    elif "音樂系統"==text:
+        text = 'http://118.150.153.139/Music/SVN_MusicPro/'
     elif "選單"==text:
         action = 1
         text = {
