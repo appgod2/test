@@ -1,11 +1,15 @@
+import configparser
+import logging
+import telegram
 import random
-import lottery
+
 import myStockt
 import stock2
 import write_allstock_tw
 import creat_everydatebase
 import threading
 from flask import Flask, request, abort
+from telegram.ext import Dispatcher, MessageHandler, Filters, Updater
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -16,7 +20,19 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 
+# Load data from config.ini file
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+# Enable logging
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 app = Flask(__name__)
+
+# Initial bot by Telegram access token
+bot = telegram.Bot(token=(config['TELEGRAM']['ACCESS_TOKEN']))
 
 line_bot_api = LineBotApi('FlmQQSiEiaKaqoW1Pp3RWKa7I4Qbd39tUDBpod9v6vl6y0VkDelvqRKUFSXeO+IhT95usgs4IKt/j0i9qQQ82kjkymL4owhn1T0OMcEC1VSkO8Iuk4b7ApxFRjPC/QHskjulWjPaNWwah8JMj4GGNAdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('c9bbe032d7640d2adcbb5e27cb28b012')
@@ -27,6 +43,22 @@ getId=False
 def index():
 
     return 'Hello World!'
+
+@app.route('/hook', methods=['POST'])
+def webhook_handler():
+    """Set route /hook with POST method will trigger this method."""
+    if request.method == "POST":
+        update = telegram.Update.de_json(request.get_json(force=True), bot)
+
+        # Update dispatcher process that handler to process this message
+        dispatcher.process_update(update)
+    return 'ok'
+
+
+def reply_handler(update, context):
+    """Reply message."""
+    text = update.message.text
+    update.message.reply_text(text)
 
 # @app.route('/<name>')
 # def hello(name):
@@ -39,7 +71,7 @@ def callback():
 
     # get request body as text
     body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
+    logger.info("Request body: " + body)
 
     # handle webhook body
     try:
@@ -69,16 +101,6 @@ def handle_message(event):
             t.start()
     elif "2"==text:
         text = "廖韋佑"
-    elif "威力彩"==text:
-        num = " ".join(str(x) for x in random.sample(range(1,38),6))
-        num2 = " ".join(str(x) for x in random.sample(range(1,8),1))
-        text = num + " 特別號:" + num2
-    elif "威力彩開獎"==text:
-        text = lottery.wei_li()
-    elif "大樂透開獎"==text:
-        text = lottery.big_lottery()
-    elif "539開獎"==text:
-        text = lottery.colorful_539()
     elif "音樂系統"==text:
         text = 'http://118.150.153.139/Music/SVN_MusicPro/'
     elif "選單"==text:
@@ -178,7 +200,7 @@ def test():
     # 'Content-Type': 'image/png',
     # 'Content-Length': len(data)
     # }
-    # return HTTPResponse(body=data, headers=headers,)
+    # return HTTPResponse(body=data, headers=headers,) 
 @app.route('/sid_list')
 def sid_list():
     return stock2.getSid_list(30)
@@ -186,6 +208,13 @@ def sid_list():
 @app.route('/getStockall_testRunLog')
 def getStockall_testRunLog():
     return stock2.getStockall_testRunLog()
+
+# New a dispatcher for bot
+dispatcher = Dispatcher(bot, None)
+
+# Add handler for handling message, there are many kinds of message. For this handler, it particular handle text
+# message.
+dispatcher.add_handler(MessageHandler(Filters.text, reply_handler))
 
 if __name__=="__main__":
     app.run()

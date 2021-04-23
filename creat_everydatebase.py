@@ -8,7 +8,7 @@ import MySQLdb
 sys.setrecursionlimit(10000000)
 
 
-conn = MySQLdb.connect(host='118.150.153.139',port=32769,user='root',password='acha',database='twstock')
+conn = MySQLdb.connect(host='127.0.0.1',port=3306,user='root',password='acha',database='twstock')
 conn.set_character_set('utf8')
 cursor = conn.cursor()
 

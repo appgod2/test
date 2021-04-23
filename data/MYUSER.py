@@ -6,7 +6,7 @@ import logging
 
 class MYUSER(object):
         
-    def __init__(self, money=0, myStockData={str:StockBean},isAftetDaySell=False,startData =19910101):
+    def __init__(self, money=0, myStockData={str:StockBean},isAftetDaySell=False):
         self._id = None
         self._money = float(money)
         self._oldmoney = float(money)
@@ -14,11 +14,6 @@ class MYUSER(object):
         self._myStockData = myStockData
         self._isAftetDaySell = isAftetDaySell
         self._MyFrame = None
-        self._stop = False
-        self._isStopOk = False
-        self._date = [startData]
-        self._rate = [0]
-        self._rateData = {"date":self._date,"rate":self._rate}
     
     @property
     def money(self):
@@ -47,12 +42,6 @@ class MYUSER(object):
     def setMyFrame(self,MyFrame):
         self._MyFrame = MyFrame
     
-    def setStop(self,isStop):
-        self._stop = isStop
-    
-    def setIsStopOk(self,isStopOk):
-        self._isStopOk = isStopOk
-    
     def addMsg(self,msg):
         print(msg)
         logging.debug(msg)
@@ -60,13 +49,8 @@ class MYUSER(object):
             self._MyFrame.contents.AppendText(str(msg))
             self._MyFrame.contents.AppendText('\n')
     
-    def addRateData(self,date,rate):
-        self._rateData['date'].append(date)
-        self._rateData['rate'].append(rate)
-    
     def setId(self,id):
         self._id = id
-        self.writeCSV(str(self._id)+'_sellDara','w',['DATE','CODE','CODENM','價位','賣數量','成本','剩餘數量','手續費','交易稅','損益'])
     
     
     def buyStock(self,_StockBean):
@@ -99,7 +83,7 @@ class MYUSER(object):
                 else:
                     self._myStockData[_StockBean._code] = _StockBean
     
-    def sellStock(self,_StockBean,date):
+    def sellStock(self,_StockBean,text):
         if _StockBean._code in self._myStockData:
             old_StockBean = self._myStockData[_StockBean._code]
             oq = float(old_StockBean._quantity)
@@ -122,11 +106,10 @@ class MYUSER(object):
                     old_StockBean._quantity = newq
                     old_StockBean._nowprice = float(_StockBean._nowprice)
                     self._myStockData[_StockBean._code] = old_StockBean
-                msg = (date,'賣(%s)%s'%(_StockBean._code,_StockBean._codeNM),' 價位:%s ,賣數量:%s ,成本:%s ,剩餘數量:%s ,手續費:%s ,交易稅:%s ,損益:%s'%(ncost,nq,ocost,newq,HandlingFee,TransactionTax,profit),'現金:%s + %s = %s'%(oldMoney,addMoney,self._money))
+                msg = (text,'賣(%s)%s'%(_StockBean._code,_StockBean._codeNM),' 價位:%s ,賣數量:%s ,成本:%s ,剩餘數量:%s ,手續費:%s ,交易稅:%s ,損益:%s'%(ncost,nq,ocost,newq,HandlingFee,TransactionTax,profit),'現金:%s + %s = %s'%(oldMoney,addMoney,self._money))
                 # print(msg)
                 # logging.debug(msg)
                 self.addMsg(msg)
-                self.writeCSV(str(self._id)+'_sellDara','a',[date,_StockBean._code,_StockBean._codeNM,ncost,nq,ocost,newq,HandlingFee,TransactionTax,profit])
                 stockCost = 0
                 oldmoney = float(self._oldmoney)
                 if len(self._myStockData)>0:
@@ -180,7 +163,6 @@ class MYUSER(object):
         # print(msg)
         # logging.debug(msg)
         self.addMsg(msg)
-        self.addRateData(date,p)
         return msg
     
     def updateStockNowPrice(self,code,nowprice):
@@ -195,11 +177,3 @@ class MYUSER(object):
     def Transaction_Tax(self,money):
         a = 0.003
         return round(money * a ,0)
-
-    def writeCSV(self,fileNM,actionType,data):
-        import csv
-        # 開啟輸出的 CSV 檔案
-        with open(fileNM + '.csv', actionType, newline='') as csvfile:
-            # 建立 CSV 檔寫入器
-            writer = csv.writer(csvfile)
-            writer.writerow(data)

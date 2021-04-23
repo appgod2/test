@@ -122,8 +122,7 @@ def train_data(train_begin=500,train_end=2500):
             feed_dict = {X: train_x[batch_index[step]:batch_index[step + 1]],
                          Y: train_y[batch_index[step]:batch_index[step + 1]]}
 
-            _, loss_, states = sess.run([train_op, loss, final_states],
-                                                feed_dict=feed_dict)
+            _, loss_, states = sess.run([train_op, loss, final_states], feed_dict=feed_dict)
         print( i, loss_)
         if i % 20 == 0:
             print("保存模型：", saver.save(sess, model_path+'/stock.model', global_step=i))
@@ -174,9 +173,9 @@ def prediction(test_begin=0,test_end=500):
 def start():
     if only_prediction==0:
         with tf.variable_scope('train'):
-            train_data(500,2000)
+            train_data(50,200)
         with tf.variable_scope('train', reuse=True):
-            prediction(2500, 3000)
+            prediction(250, 300)
     else:
         with tf.variable_scope('train'):
-            prediction(2500, 3000)
+            prediction(250, 300)
